@@ -19,7 +19,7 @@ class FilterBar extends Component {
         <Navbar.Collapse>
           <Navbar.Form pullLeft>
             <FormGroup>
-              <FormControl type="text" placeholder="Search" />
+              <FormControl type="text" placeholder="Filter" />
             </FormGroup>
             {' '}
             <Button type="submit">Submit</Button>
