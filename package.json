@@ -1,16 +1,34 @@
 {
-  "name": "tuilio",
+  "name": "moviesorting",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bootstrap": "^3.3.7",
+    "browserify": "^14.4.0",
+    "imdb-api": "^3.1.1",
     "react": "^15.6.1",
+    "react-bootstrap": "^0.31.2",
     "react-dom": "^15.6.1",
-    "react-scripts": "1.0.13"
+    "react-script": "^2.0.5",
+    "style-loader": "^0.18.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rizialdi/MovieSorting.git"
+  },
+  "author": "Rizialdi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Rizialdi/MovieSorting/issues"
+  },
+  "homepage": "https://github.com/Rizialdi/MovieSorting#readme"
 }
