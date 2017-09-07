@@ -1,5 +1,6 @@
 {
   "name": "moviesorting",
+  "homepage": "https://rizialdi.github.io/MovieSorting/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,6 +11,7 @@
     "react-bootstrap": "^0.31.2",
     "react-dom": "^15.6.1",
     "react-script": "^2.0.5",
+    "react-scripts": "^1.0.13",
     "style-loader": "^0.18.2"
   },
   "scripts": {
@@ -32,6 +34,5 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Rizialdi/MovieSorting/issues"
-  },
-  "homepage": "https://github.com/Rizialdi/MovieSorting#readme"
+  }
 }
