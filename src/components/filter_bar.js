@@ -4,15 +4,23 @@ class FilterBar extends Component {
   constructor(...args) {
   super(...args);
 
-  this.state = {};
+  this.state = {
+    filterTerm: ''
+  };
+      this.handleFilter = this.handleFilter.bind(this);
 }
 
+handleFilter(e){
+  alert("moi")
+  e.preventDefault;
+  this.setState({filterTerm: e.target.value});
+}
   render() {
     return (
         <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            Filter
+            {this.props.term}
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
@@ -22,7 +30,7 @@ class FilterBar extends Component {
               <FormControl type="text" placeholder="Filter" />
             </FormGroup>
             {' '}
-            <Button type="submit">Submit</Button>
+            <Button onChange = {this.handleFilter} type="submit">Submit</Button>
           </Navbar.Form>
         </Navbar.Collapse>
         </Navbar>
