@@ -3,7 +3,6 @@ import {Button} from 'react-bootstrap';
 import JumboPresent from './components/jumbo_present';
 import FilterBar from './components/filter_bar';
 import Card from './components/card';
-import Modaldef from './components/modal'
 import preload from './dummy.json';
 import './App.css';
 const imdb = require('imdb-api');
@@ -17,7 +16,7 @@ class App extends Component {
       country: "USA"
     };
     //On met ici cette commande pour faire un bind au nivo du constructeur et c'est parti pour la session
-    this.query.bind(this)
+    this.query = this.query.bind(this)
 }
 
 componentWillMount() {
@@ -32,13 +31,12 @@ componentWillMount() {
 }
 
   render() {
-    let card = preload.movies.map(movie => <Card movie = {movie.title} release = {movie.released} country = {movie.country} poster = {movie.poster} key = {movie.title}/>);
+    let card = preload.movies.map(movie => <Card movie = {movie.title} release = {movie.released} country = {movie.country} poster = {movie.poster} plot = {movie.plot} key = {movie.title}/>);
     return (
       <div className="App">
         <JumboPresent />
         <Button bsStyle="primary" onClick={this.query}>Query Api</Button>
         <FilterBar />
-        <Modaldef />
         {card}
     </div>
     );
