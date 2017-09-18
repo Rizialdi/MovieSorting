@@ -4,8 +4,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "ajv": "^5.2.2",
     "bootstrap": "^3.3.7",
     "browserify": "^14.4.0",
+    "flow": "^0.2.3",
+    "global": "^4.3.2",
     "imdb-api": "^3.1.1",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.2",
@@ -18,12 +21,14 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "prepublish": "yarn run build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
   "main": "index.js",
   "devDependencies": {
+    "flow-bin": "^0.54.1",
     "gh-pages": "^1.0.0"
   },
   "repository": {

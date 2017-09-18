@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {Button, Col, Thumbnail, Modal} from 'react-bootstrap';
+import {Button, Col, Modal} from 'react-bootstrap';
+import '../App.css';
 
 const APIKEY = 'AIzaSyDW8a38P22Dhnu5KcZiSiY49zJYpwmZeMM';
 const MAXRESULTS = 1;
@@ -24,11 +25,11 @@ close() {
 open() {
   this.setState({ showModal: true });
 
-  function foo(param){
-    return `https://www.googleapis.com/youtube/v3/search?type=${TYPE}&maxResults=${MAXRESULTS}&part=${PART}&key=${APIKEY}&q=${param}+trailer`
+  function foo(movie, date){
+    return `https://www.googleapis.com/youtube/v3/search?type=${TYPE}&maxResults=${MAXRESULTS}&part=${PART}&key=${APIKEY}&q=${movie}+${date}+trailer`
   };
 
-  fetch(foo(this.props.movie))
+  fetch(foo(this.props.movie, this.props.release))
      .then((response) => response.json())
      .then((responseJson) => {
        const embed = responseJson.items.map(obj => 'https://www.youtube.com/embed/'+obj.id.videoId);
@@ -42,8 +43,9 @@ open() {
   render() {
     return (
       <div>
-        <Col xs={6} md={4}>
-          <Thumbnail src={this.props.poster} alt={this.props.poster}>
+        <Col xs={12} sm={6} md={4}>
+          <div className="thumbnail">
+              <img src={this.props.poster} alt={this.props.poster}/>
             <h3>{this.props.movie}</h3>
             <p>{this.props.release}</p>
             <p>{this.props.country}</p>
@@ -55,9 +57,14 @@ open() {
               >
                 More Info
               </Button>
-              <Button bsStyle="default">Button</Button>
+              <a href={this.props.website} target="_blank">
+              <Button
+                  bsStyle="default"
+              >
+                Website
+              </Button></a>
             </p>
-          </Thumbnail>
+          </div>
         </Col>
         <Modal show={this.state.showModal} onHide={this.close}>
           <Modal.Header closeButton>

@@ -1,46 +1,60 @@
 import React, { Component } from 'react';
-import {Button} from 'react-bootstrap';
 import JumboPresent from './components/jumbo_present';
-import FilterBar from './components/filter_bar';
+import {Button, Navbar, FormGroup, FormControl} from 'react-bootstrap';
 import Card from './components/card';
 import preload from './dummy.json';
 import './App.css';
-const imdb = require('imdb-api');
 
 class App extends Component {
   constructor(...args) {
     super(...args);
-    this.state = {};
-    //On met ici cette commande pour faire un bind au nivo du constructeur et c'est parti pour la session
-    this.query = this.query.bind(this);
-}
+    this.state = {
+        filterTerm: '',
+    };
 
-componentWillMount() {
-  // imdb.get('game', {apiKey: '19021629', timeout: 30})
-  // .then(x => {this.setState({movie_title: x.title}); console.log(x.title);})
-  // .catch(console.log);
-  // this.setState({
-  //   movie_title: "Relo",
-  //   release_date: 2006,
-  //   country: "USA"
-  // });
-}
+      this._handleReset = this._handleReset.bind(this);
+      this._handleChange = this._handleChange.bind(this);
+  };
+
+    _handleReset(e){
+        e.preventDefault();
+        this.setState({filterTerm: ''});
+    }
+
+    _handleChange(e){
+        const filterTerm = e.target.value;
+        this.setState({filterTerm})
+    }
 
   render() {
-    let card = preload.movies.map(movie => <Card movie = {movie.title} release = {movie.released} country = {movie.country} poster = {movie.poster} plot = {movie.plot} key = {movie.title}/>);
+    let card = preload.movies
+        .filter(movie => `${movie.Title} ${movie.Plot}`.toUpperCase().indexOf(this.state.filterTerm.toUpperCase()) >= 0)
+        .map(movie =>
+                    <Card key = {movie.Title}
+                          movie = {movie.Title}
+                          release = {movie.Released}
+                          country = {movie.Country}
+                          poster = {movie.Poster}
+                          website = {movie.Website}
+                          plot = {movie.Plot} />);
+
     return (
-      <div className="App">
-        <JumboPresent />
-        <Button bsStyle="primary" onClick={this.query}>Query Api</Button>
-        <FilterBar />
-        {card}
-    </div>
+        <div className="App">
+            <JumboPresent />
+            <Navbar>
+                    <Navbar.Form>
+                        <FormGroup>
+                            <FormControl type="text" placeholder="Filter Term" value = {this.state.filterTerm} onChange = {this._handleChange} />
+                        </FormGroup>
+                        <Button onClick = {this._handleReset} type="submit">Reset</Button>
+                    </Navbar.Form>
+            </Navbar>
+            {card}
+        </div>
     );
   }
 
-  query(){
-    imdb.get('The Toxic Avenger', {apiKey: '19021629', timeout: 30}).then(x => this.setState({movie_title: x.title})).catch(console.log);
-  }
+
 }
 
 export default App;
